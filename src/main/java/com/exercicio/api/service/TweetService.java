@@ -1,6 +1,7 @@
 package com.exercicio.api.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class TweetService {
         tweet.put("avatar", person.getAvatar());
 
         repository.save(new Tweet(tweet));
+    }
+
+    public List<Tweet> findAll(){
+        return repository.findAll();
     }
     
 

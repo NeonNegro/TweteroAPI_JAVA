@@ -1,13 +1,12 @@
 package com.exercicio.api.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.exercicio.api.dto.TweetDTO;
-import com.exercicio.api.model.Person;
 import com.exercicio.api.model.Tweet;
 import com.exercicio.api.repository.TweetRepository;
 
@@ -22,19 +21,17 @@ public class TweetService {
 
     public void save(TweetDTO dto){
         
-        Person person = personService.getPersonByAvatar(dto.username());
+        String avatar = personService.getPersonAvatar(dto.username());
 
-        HashMap<String, String> tweet = new HashMap<>();
-
-        tweet.put("text", dto.text());
-        tweet.put("username", dto.username());
-        tweet.put("avatar", person.getAvatar());
-
-        repository.save(new Tweet(tweet));
+        repository.save(new Tweet(dto, avatar));
     }
 
     public List<Tweet> findAll(){
         return repository.findAll();
+    }
+
+    public List<Tweet> findAllPaginated(Pageable pageable) {
+        return  repository.findAll(pageable).getContent();
     }
     
 

@@ -1,6 +1,6 @@
 package com.exercicio.api.model;
 
-import java.util.Map;
+import com.exercicio.api.dto.TweetDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,10 +15,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Tweet {
 
-    public Tweet(Map<String, String> data){
-        this.username = data.get("username");
-        this.avatar = data.get("avatar");
-        this.text = data.get("text");
+    public Tweet(TweetDTO dto, String avatar){
+        this.username = dto.username();
+        this.avatar = avatar;
+        this.text = dto.text();
     }
 
     @Id

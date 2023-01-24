@@ -17,8 +17,8 @@ public class PersonService {
         repository.save(new Person(dto));
     }
 
-    public Person getPersonByAvatar(String username) {
-        return repository.findByUsername(username);
+    public String getPersonAvatar(String username) {
+        return repository.findByUsername(username).getAvatar();
     }
     
 

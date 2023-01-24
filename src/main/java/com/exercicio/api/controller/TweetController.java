@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exercicio.api.dto.PersonDTO;
-import com.exercicio.api.service.PersonService;
+import com.exercicio.api.dto.TweetDTO;
+import com.exercicio.api.service.TweetService;
 
 @RestController
-@RequestMapping("/sign-up")
-public class PersonController {
+@RequestMapping("/tweets")
+public class TweetController {
 
     @Autowired
-    private PersonService service;
+    private TweetService service;
 
     @PostMapping
-    public void create(@RequestBody PersonDTO req){
+    public void create(@RequestBody TweetDTO req){
         service.save(req);
     }
     

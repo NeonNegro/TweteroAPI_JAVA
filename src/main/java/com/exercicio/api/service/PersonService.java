@@ -16,6 +16,10 @@ public class PersonService {
     public void save(PersonDTO dto){
         repository.save(new Person(dto));
     }
+
+    public Person getPersonByAvatar(String username) {
+        return repository.findByUsername(username);
+    }
     
 
     // métodos: find, findById, save, update etc.., no qual estes chamariam o repository. 

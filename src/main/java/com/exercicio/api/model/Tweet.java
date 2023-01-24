@@ -1,6 +1,6 @@
 package com.exercicio.api.model;
 
-import com.exercicio.api.dto.PersonDTO;
+import java.util.Map;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,17 +8,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-public class Person {
+@NoArgsConstructor
+public class Tweet {
 
-    public Person(){
-        
-    }
-    public Person(PersonDTO data){
-        this.username = data.username();
-        this.avatar = data.avatar();
+    public Tweet(Map<String, String> data){
+        this.username = data.get("username");
+        this.avatar = data.get("avatar");
+        this.text = data.get("text");
     }
 
     @Id
@@ -27,5 +27,7 @@ public class Person {
     @Column(length = 30, nullable = false)
     private String username;
     @Column(length = 100, nullable = false)
+    private String text;
+    @Column(length = 200, nullable = false)
     private String avatar;
 }
